@@ -31,6 +31,17 @@ func Example_strconv() {
 	s = strconv.FormatInt(13402077, 16)
 	fmt.Println(s, err)
 
+	var num int
+	fmt.Sscanf("57", "%d", &num) // num == 57
+	fmt.Println(num)
+
+	var ss string
+	ss = fmt.Sprint(3.14) // s == "3.14"
+	fmt.Println(ss)
+
+	ss = fmt.Sprintf("%x", 13402077) // s == "cc7fdd"
+	fmt.Println(ss)
+
 	// Output:
 	// 350 <nil>
 	// 13402077 <nil>
@@ -38,4 +49,7 @@ func Example_strconv() {
 	// 3.14 <nil>
 	// 340 <nil>
 	// cc7fdd <nil>
+	// 57
+	// 3.14
+	// cc7fdd
 }
