@@ -152,3 +152,57 @@ func Example_sliceCopy() {
 	//복사가 덜됐네... : 4
 	//[30 20 50 10 40]
 }
+
+func Example_insertInArray() {
+	a := []int{1, 2, 3, 4, 5}
+	i := 1
+	x := 77
+
+	fmt.Println(a)
+	a = append(a, x)
+	copy(a[i+1:], a[i:])
+	a[i] = x
+	fmt.Println(a)
+
+	xx := []int{7, 8, 9}
+	a = append(a, xx...)
+	copy(a[i+len(xx):], a[i:])
+	copy(a[i:], xx)
+	fmt.Println(a)
+
+	// Output:
+	// [1 2 3 4 5]
+	// [1 77 2 3 4 5]
+	// [1 7 8 9 77 2 3 4 5]
+}
+
+func Example_deleteArray() {
+	a := []int{1, 2, 3, 4, 5}
+	i := 1
+	k := 3
+
+	a = append(a[:i], a[i+k:]...)
+	fmt.Println(a)
+
+	// Output:
+	// [1 5]
+}
+
+func Example_preventArrayMemoryLeak() {
+	a := []int{1, 2, 3, 4, 5}
+	i := 1
+	k := 3
+
+	start := len(a) - k
+	if i+k > start {
+		start = i + k
+	}
+
+	copy(a[i:i+k], a[start:])
+	a = a[:len(a)-k]
+	fmt.Println(a)
+	fmt.Println(len(a), cap(a))
+
+	// Output:
+	// [1 5]
+}
