@@ -55,8 +55,21 @@ func ExampleCountSort() {
 		fmt.Println(string(key), codeCount[rune(key)])
 	}
 
+	// map 의 value 만 가져와서 sorting 후 찍고 싶을 때
+	var values sort.IntSlice
+	for _, val := range codeCount {
+		values = append(values, int(val))
+	}
+	sort.Sort(values)
+	for _, val := range values {
+		fmt.Println(val)
+	}
+
 	// Output:
 	// 가 1
 	// 나 2
 	// 다 1
+	// 1
+	// 1
+	// 2
 }
