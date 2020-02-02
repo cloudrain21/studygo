@@ -99,10 +99,37 @@ func delete_elem() {
 	}
 }
 
+func func_map() {
+	fmt.Println("func_map()")
+
+	colors := map[string]string{
+		"AliceBlue":   "#11111",
+		"Coral":       "#22222",
+		"DarkGray":    "#33333",
+		"ForestGreen": "#44444",
+	}
+
+	for key, value := range colors {
+		fmt.Printf("key : %s value : %s\n", key, value)
+	}
+
+	removeColor(colors, "Coral")
+
+	fmt.Println("======")
+	for key, value := range colors {
+		fmt.Printf("key : %s value : %s\n", key, value)
+	}
+}
+
+func removeColor(colors map[string]string, key string) {
+	delete(colors, key)
+}
+
 func main() {
 	make_map()
 	nil_map()
 	select_map()
 	check_exist()
 	delete_elem()
+	func_map()
 }
