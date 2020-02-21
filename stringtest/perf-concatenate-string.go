@@ -49,4 +49,11 @@ func main() {
 	str = strings.Join(mySlice, "")
 	elapsed = time.Since(start)
 	fmt.Printf("strlen(%d) : %v\n", len(str), elapsed)
+
+	str = ""
+	start = time.Now()
+	str = strings.Repeat(str1, 100000)
+	elapsed = time.Since(start)
+	fmt.Printf("strlen(%d) : %v\n", len(str), elapsed)
+
 }
