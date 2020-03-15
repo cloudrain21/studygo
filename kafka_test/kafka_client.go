@@ -8,7 +8,7 @@ import (
 
 func main() {
 
-	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "localhost"})
+	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "kk001:9092"})
 	if err != nil {
 		panic(err)
 	}
@@ -30,8 +30,8 @@ func main() {
 	}()
 
 	// Produce messages to topic (asynchronously)
-	topic := "myTopic"
-	for _, word := range []string{"Welcome", "to", "the", "Confluent", "Kafka", "Golang", "client"} {
+	topic := "rain-topic"
+	for _, word := range []string{"This is the second message"} {
 		p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 			Value:          []byte(word),
