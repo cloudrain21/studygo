@@ -1,5 +1,6 @@
 package main
 
+// librdkafka 라는 c-base library 를 사용함.
 import (
 	"fmt"
 	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
@@ -8,7 +9,7 @@ import (
 
 func main() {
 
-	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "kk001:9092"})
+	p, err := kafka.NewProducer(&kafka.ConfigMap{"bootstrap.servers": "kafka.dev.9rum.cc:30100"})
 	if err != nil {
 		panic(err)
 	}
@@ -30,8 +31,8 @@ func main() {
 	}()
 
 	// Produce messages to topic (asynchronously)
-	topic := "rain-topic"
-	for _, word := range []string{"This is the second message"} {
+	topic := "ttt-test"
+	for _, word := range []string{"xxxxxxxx"} {
 		p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},
 			Value:          []byte(word),
