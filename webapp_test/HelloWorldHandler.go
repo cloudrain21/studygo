@@ -53,5 +53,9 @@ func hellowWorldHandlerDecoder(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/marshal", helloWorldHandler)
 	http.HandleFunc("/decoder", hellowWorldHandlerDecoder)
+
+	cathandler := http.FileServer(http.Dir("./images"))
+	http.Handle("/cat/", http.StripPrefix("/cat/", cathandler))
+
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
