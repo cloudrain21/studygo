@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"gopkg.in/confluentinc/confluent-kafka-go.v1/kafka"
+	//"github.com/confluentinc/confluent-kafka-go/tree/v1.3.0/kafka"
 	//"github.com/confluentinc/confluent-kafka-go/kafka"
 )
 
@@ -31,7 +32,7 @@ func main() {
 	}()
 
 	// Produce messages to topic (asynchronously)
-	topic := "ttt-test"
+	topic := "test-topic"
 	for _, word := range []string{"xxxxxxxx"} {
 		p.Produce(&kafka.Message{
 			TopicPartition: kafka.TopicPartition{Topic: &topic, Partition: kafka.PartitionAny},

@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	topic := "rain-topic"
+	topic := "test-topic"
 	partition := 0
 
-	conn, _ := kafka.DialLeader(context.Background(), "tcp", "kk001:9092", topic, partition)
+	conn, _ := kafka.DialLeader(context.Background(), "tcp", "kafka.dev.9rum.cc:30100", topic, partition)
 
 	conn.SetWriteDeadline(time.Now().Add(10 * time.Second))
 	conn.WriteMessages(
