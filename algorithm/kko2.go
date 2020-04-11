@@ -62,8 +62,43 @@ func getHosting2(ts, top []int) int {
 	return total_cnt
 }
 
+func mymin(x, y int) int {
+	if x > y {
+		return y
+	} else {
+		return x
+	}
+}
+
+func getHosting3(ts, top []int) int {
+	stime := time.Now()
+	sort.Ints(ts)
+	sort.Ints(top)
+
+	total_cnt := 0
+	currentTimestampLocation := 0
+	currentResult := 0
+
+	for currentTopLocation := 0; currentTopLocation < len(ts); currentTopLocation++ {
+		for ; currentTimestampLocation < len(ts) && ts[currentTimestampLocation] <= top[currentTopLocation]; currentTimestampLocation++ {
+
+		}
+		possibleResult := currentTimestampLocation - total_cnt
+		currentResult = mymin(possibleResult, 5)
+		if possibleResult > 5 {
+			currentTimestampLocation -= possibleResult - 5
+		}
+		total_cnt += currentResult
+	}
+
+	elapse := time.Since(stime)
+	fmt.Printf("elapse time : %s\n", elapse)
+
+	return total_cnt
+}
+
 func getHosting(ts, top []int) int {
-	return getHosting2(ts, top)
+	return getHosting3(ts, top)
 }
 
 // timestamp 에서 top 의 각 시간 안의 것을 삭제. 그리고 5 개 까지만.
